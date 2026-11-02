@@ -4,50 +4,46 @@
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
 
-    <groupId>mx.its5a</groupId>
-    <artifactId>cliente-sql</artifactId>
-    <version>1.0</version>
+    <groupId>com.thegrid</groupId>
+    <artifactId>TheGrid</artifactId>
+    <version>1.0-SNAPSHOT</version>
 
     <properties>
-        <maven.compiler.release>17</maven.compiler.release>
+        <maven.compiler.source>25</maven.compiler.source>
+        <maven.compiler.target>25</maven.compiler.target>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
     </properties>
 
     <dependencies>
+        <!-- Interfaz gráfica -->
+        <dependency>
+            <groupId>org.openjfx</groupId>
+            <artifactId>javafx-controls</artifactId>
+            <version>25.0.4</version>
+        </dependency>
+        <dependency>
+            <groupId>org.openjfx</groupId>
+            <artifactId>javafx-fxml</artifactId>
+            <version>25.0.4</version>
+        </dependency>
         <!-- Túnel SSH -->
         <dependency>
             <groupId>com.github.mwiede</groupId>
             <artifactId>jsch</artifactId>
             <version>0.2.18</version>
         </dependency>
-        <!-- Driver de la base remota -->
+        <!-- Driver de la base remota (MariaDB) -->
         <dependency>
             <groupId>org.mariadb.jdbc</groupId>
             <artifactId>mariadb-java-client</artifactId>
-            <version>3.4.1</version>
+            <version>3.5.11</version>
         </dependency>
-        <!-- Driver de la base local -->
+        <!-- Driver de la base local (SQLite) -->
         <dependency>
             <groupId>org.xerial</groupId>
             <artifactId>sqlite-jdbc</artifactId>
             <version>3.46.1.0</version>
         </dependency>
-        <!-- Pruebas -->
-        <dependency>
-            <groupId>org.junit.jupiter</groupId>
-            <artifactId>junit-jupiter</artifactId>
-            <version>5.10.2</version>
-            <scope>test</scope>
-        </dependency>
     </dependencies>
 
-    <build>
-        <plugins>
-            <plugin>
-                <groupId>org.apache.maven.plugins</groupId>
-                <artifactId>maven-surefire-plugin</artifactId>
-                <version>3.2.5</version>
-            </plugin>
-        </plugins>
-    </build>
 </project>

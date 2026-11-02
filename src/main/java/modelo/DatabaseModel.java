@@ -8,7 +8,8 @@ import java.util.Map;
  * Coordina el túnel SSH, la base remota (its5a) y la base SQLite local.
  *
  * Flujo de uso desde el controlador:
- *   1. login(host, usuario, contraseña)
+ *   1. openTunnel(host, usuarioSSH, contraseñaSSH)
+ *      connectDatabase(usuarioBD, contraseñaBD)
  *   2. getRemoteTables()
  *   3. downloadTable(nombre)          -> remota -> SQLite local
  *   4. insertRecord / updateRecord / deleteRecord / getLocalTable
@@ -28,28 +29,40 @@ public class DatabaseModel {
     private final LocalDatabase local = new LocalDatabase(LOCAL_DB_FILE);
 
     private boolean loggedIn = false;
+    private int localPort; // puerto local del túnel, se usa al conectar a MariaDB
 
     // ------------------------- Sesión -------------------------
 
     /**
-     * Abre el túnel SSH y conecta a its5a. Se usan las mismas credenciales
-     * para SSH y para la base de datos; si en tu servidor son distintas,
-     * agrega parámetros dbUser/dbPassword.
+     * Paso 1: abre el túnel SSH con el usuario del servidor (ej. patito).
      */
-    public void login(String host, String user, String password) throws ModelException {
+    public void openTunnel(String host, String user, String password) throws ModelException {
         if (host == null || host.isBlank() || user == null || user.isBlank()) {
             throw new ModelException("Host y usuario son obligatorios.");
         }
-        try {
-            int localPort = tunnel.open(host.trim(), SSH_PORT, user, password,
-                    REMOTE_DB_HOST, REMOTE_DB_PORT);
-            remote.connect(localPort, user, password);
-            local.open();
-            loggedIn = true;
-        } catch (ModelException e) {
-            logout(); // no dejar recursos a medias
-            throw e;
+        localPort = tunnel.open(host.trim(), SSH_PORT, user, password,
+                REMOTE_DB_HOST, REMOTE_DB_PORT);
+    }
+
+    /**
+     * Paso 2: conecta a its5a por el túnel. El usuario de MariaDB
+     * (ej. becario) es distinto al usuario SSH.
+     */
+    public void connectDatabase(String dbUser, String dbPassword) throws ModelException {
+        if (!tunnel.isOpen()) {
+            throw new ModelException("Primero debes abrir el túnel SSH.");
         }
+        if (dbUser == null || dbUser.isBlank()) {
+            throw new ModelException("El usuario de MariaDB es obligatorio.");
+        }
+        remote.close(); // por si había un intento anterior
+        remote.connect(localPort, dbUser, dbPassword);
+        local.open();
+        loggedIn = true;
+    }
+
+    public boolean isTunnelOpen() {
+        return tunnel.isOpen();
     }
 
     public void logout() {

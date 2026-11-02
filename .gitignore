@@ -1,0 +1,8 @@
+# Compilación de Maven
+target/
+
+# Base SQLite local que genera la app al descargar tablas
+*.db
+
+# Configuración personal de IntelliJ
+.idea/

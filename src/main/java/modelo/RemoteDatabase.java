@@ -75,6 +75,16 @@ public class RemoteDatabase {
                     tipos.add(toSqliteType(md.getColumnType(i)));
                 }
 
+                // Si la llave primaria es una sola columna numérica, en SQLite se declara
+                // INTEGER PRIMARY KEY: no acepta repetidos y si va vacía se genera sola.
+                List<String> llaves = primaryKeys(table);
+                if (llaves.size() == 1) {
+                    int pos = columnas.indexOf(llaves.get(0));
+                    if (pos >= 0 && tipos.get(pos).equals("INTEGER")) {
+                        tipos.set(pos, "INTEGER PRIMARY KEY");
+                    }
+                }
+
                 TableData data = new TableData(table, columnas, tipos);
                 while (rs.next()) {
                     List<Object> fila = new ArrayList<>();
@@ -88,6 +98,17 @@ public class RemoteDatabase {
         } catch (SQLException e) {
             throw new ModelException("Error al leer la tabla " + table + ": " + e.getMessage(), e);
         }
+    }
+
+    /** Columnas que forman la llave primaria de la tabla en el servidor. */
+    private List<String> primaryKeys(String table) throws SQLException {
+        List<String> llaves = new ArrayList<>();
+        try (ResultSet rs = connection.getMetaData().getPrimaryKeys(connection.getCatalog(), null, table)) {
+            while (rs.next()) {
+                llaves.add(rs.getString("COLUMN_NAME"));
+            }
+        }
+        return llaves;
     }
 
     public void close() {

@@ -25,7 +25,7 @@
     </top>
     <left>
         <VBox prefWidth="250" spacing="10" style="-fx-padding: 16 8 16 16;">
-            <Label style="-fx-text-fill: #ff9a3c; -fx-font-size: 16px; -fx-font-weight: bold;" text="Esquema X" />
+            <Label style="-fx-text-fill: #ff9a3c; -fx-font-size: 16px; -fx-font-weight: bold;" text="Esquema its5a" />
             <TextField fx:id="txtBuscarTabla" onKeyReleased="#handleBuscarTabla" promptText="filtrar tablas" style="-fx-background-color: #08101c; -fx-text-fill: #ffffff; -fx-prompt-text-fill: #4d6577; -fx-border-color: #1aa7bd; -fx-border-width: 1; -fx-border-radius: 3; -fx-background-radius: 3; -fx-padding: 7 9 7 9;" />
             <ListView fx:id="lvTablas" onKeyReleased="#handleTablaTecla" onMouseClicked="#handleSeleccionarTabla" style="-fx-background-color: #08101c; -fx-control-inner-background: #08101c; -fx-base: #0d1a33; -fx-text-base-color: #b8e6f0; -fx-selection-bar: #ff7a00; -fx-selection-bar-non-focused: #ff7a00; -fx-border-color: #1aa7bd; -fx-border-radius: 3; -fx-background-radius: 3;" VBox.vgrow="ALWAYS" />
             <Label fx:id="lblTotalTablas" style="-fx-text-fill: #5f7a8c; -fx-font-size: 11px;" text="0 tablas" />

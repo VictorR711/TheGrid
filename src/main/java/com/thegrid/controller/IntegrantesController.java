@@ -1,5 +1,7 @@
 package com.thegrid.controller;
 
+import java.io.IOException;
+
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
@@ -17,17 +19,21 @@ public class IntegrantesController {
 
     @FXML
     private void initialize() {
+        // Los nombres ya vienen escritos en Integrantes.fxml
     }
 
     @FXML
-    private void handleIrTablas(ActionEvent event) {
+    private void handleIrTablas(ActionEvent event) throws IOException {
+        Sesion.cambiarVista(event, "/vistas/Principal.fxml");
     }
 
     @FXML
-    private void handleIrCrud(ActionEvent event) {
+    private void handleIrCrud(ActionEvent event) throws IOException {
+        Sesion.cambiarVista(event, "/vistas/Crud.fxml");
     }
 
     @FXML
     private void handleIrIntegrantes(ActionEvent event) {
+        // ya estamos en Integrantes
     }
 }
