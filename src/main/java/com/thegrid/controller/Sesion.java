@@ -35,7 +35,7 @@ public class Sesion {
     /** Última tabla descargada; es la que se abre en el CRUD. */
     public static String tablaActual;
 
-    /** Igual que en Cometa, pero en un solo lugar para no copiarlo en cada controlador. */
+    /** Cambia la vista de la ventana actual. */
     public static void cambiarVista(ActionEvent event, String ruta) throws IOException {
         FXMLLoader loader = new FXMLLoader(
                 Sesion.class.getResource(ruta)

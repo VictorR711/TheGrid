@@ -5,8 +5,8 @@ import com.jcraft.jsch.JSchException;
 import com.jcraft.jsch.Session;
 
 /**
- * Túnel SSH con port forwarding local (equivalente a la pestaña "SSH" de
- * DBeaver). Todo lo que se envíe a 127.0.0.1:puertoLocal viaja cifrado hasta
+ * Túnel SSH con port forwarding local.
+ * Todo lo que se envíe a 127.0.0.1:puertoLocal viaja cifrado hasta
  * el host y sale hacia remoteHost:remotePort (el servidor de base de datos).
  */
 public class SshTunnel {

@@ -34,7 +34,7 @@ public class RemoteDatabase {
         }
     }
 
-    /** Lista las tablas del esquema its5a (equivale a ver el árbol de DBeaver). */
+    /** Lista las tablas del esquema its5a. */
     public List<String> listTables() throws ModelException {
         List<String> tablas = new ArrayList<>();
         try {

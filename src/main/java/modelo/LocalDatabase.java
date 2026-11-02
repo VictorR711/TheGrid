@@ -15,7 +15,6 @@ import java.util.StringJoiner;
 
 /**
  * Base SQLite local. Aquí se guardan las tablas "descargadas" y se hace el CRUD.
- * Es la traducción directa de la lógica de sqlite3 del código en Python.
  *
  * Para identificar cada registro en UPDATE/DELETE se usa el rowid de SQLite,
  * que existe en toda tabla normal aunque la tabla remota no tuviera llave primaria.
@@ -33,7 +32,7 @@ public class LocalDatabase {
     // Conexión
     // ------------------------------------------------------------------
 
-    /** Abre (o crea) el archivo .db, igual que sqlite3.connect() en Python. */
+    /** Abre o crea el archivo .db. */
     public void open() throws ModelException {
         try {
             connection = DriverManager.getConnection("jdbc:sqlite:" + path);
@@ -209,13 +208,13 @@ public class LocalDatabase {
     }
 
     // ------------------------------------------------------------------
-    // SQL libre (traducción de ejecutar_sql() del código en Python)
+    // SQL libre
     // ------------------------------------------------------------------
 
     /**
      * Ejecuta una o varias sentencias separadas por ';'. Si alguna falla se
      * hace rollback de todo. Devuelve el resultado de la última sentencia.
-     * Limitación (igual que en Python): un ';' dentro de un texto también divide.
+     * Limitación: un ';' dentro de un texto también divide.
      */
     public QueryResult executeSql(String sqlText) throws ModelException {
         QueryResult ultimo = null;
@@ -228,7 +227,7 @@ public class LocalDatabase {
                     continue;
                 }
                 try (Statement st = connection.createStatement()) {
-                    // execute() devuelve true si hay ResultSet (≈ cursor.description en Python)
+                    // execute() devuelve true si hay ResultSet
                     if (st.execute(sentencia)) {
                         try (ResultSet rs = st.getResultSet()) {
                             ultimo = readResultSet(rs);

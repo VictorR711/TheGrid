@@ -121,7 +121,7 @@ public class DatabaseModel {
         return local.delete(table, rowId);
     }
 
-    /** Equivalente al editor SQL del Mini DBeaver (opcional para la tarea). */
+    /** Ejecuta SQL en la base local. */
     public QueryResult executeSql(String sql) throws ModelException {
         requireLogin();
         return local.executeSql(sql);

@@ -3,8 +3,7 @@ package modelo;
 import java.util.List;
 
 /**
- * Resultado de ejecutar SQL libre (equivalente a lo que mostraba el Treeview
- * y la barra de estado en la versión de Python).
+ * Resultado de ejecutar SQL libre.
  *  - Si es un SELECT/PRAGMA: tiene columnas y filas.
  *  - Si es INSERT/UPDATE/DELETE/CREATE: solo tiene filas afectadas.
  */

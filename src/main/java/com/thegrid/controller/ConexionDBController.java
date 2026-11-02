@@ -28,7 +28,7 @@ public class ConexionDBController {
     private void initialize() {
         lblHostTunel.setText(Sesion.usuario + "@" + Sesion.host);
 
-        // El modelo siempre se conecta a localhost:3306/its5a (lo que pide la tarea),
+        // El modelo siempre se conecta a localhost:3306/its5a,
         // así que estos campos solo se muestran, no se editan.
         txtHostDB.setEditable(false);
         txtPuertoDB.setEditable(false);
