@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.collections.FXCollections?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ComboBox?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.PasswordField?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.StackPane?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.shape.Circle?>
+<?import java.lang.String?>
+
+<HBox alignment="CENTER" fillHeight="false" minHeight="520" minWidth="800" prefHeight="600" prefWidth="960" spacing="60.0" style="-fx-background-color: #060a12; -fx-font-family: 'Consolas'; -fx-font-size: 13px;" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.thegrid.controller.LoginController">
+    <VBox alignment="CENTER" spacing="18">
+        <StackPane>
+            <Circle radius="125" style="-fx-fill: transparent; -fx-stroke: #00e5ff; -fx-stroke-width: 3; -fx-effect: dropshadow(gaussian, rgba(0,229,255,0.8), 16, 0.2, 0, 0);" />
+            <Circle radius="100" style="-fx-fill: transparent; -fx-stroke: #ff7a00; -fx-stroke-width: 2; -fx-stroke-dash-array: 12 7;" />
+            <Circle radius="66" style="-fx-fill: transparent; -fx-stroke: #1aa7bd; -fx-stroke-width: 1;" />
+            <Label style="-fx-text-fill: #00e5ff; -fx-font-size: 17px; -fx-font-weight: bold; -fx-effect: dropshadow(gaussian, rgba(0,229,255,0.6), 10, 0.2, 0, 0);" text="THE GRID" />
+        </StackPane>
+        <Label style="-fx-text-fill: #5f7a8c; -fx-font-size: 11px;" text="Cliente de base de datos remota" />
+    </VBox>
+    <VBox maxWidth="360" minWidth="330" spacing="8" style="-fx-background-color: #0b1320; -fx-border-color: #1aa7bd; -fx-border-width: 1; -fx-border-radius: 3; -fx-background-radius: 3; -fx-padding: 20;">
+        <Label style="-fx-text-fill: #00e5ff; -fx-font-size: 16px; -fx-font-weight: bold;" text="Iniciar sesión" />
+        <Label style="-fx-text-fill: #5f7a8c; -fx-font-size: 11px;" text="Servidor SSH" />
+        <Label style="-fx-text-fill: #6fb7c7; -fx-font-size: 11px;" text="Host" />
+        <ComboBox fx:id="cbHost" editable="true" onAction="#handleHostSeleccionado" maxWidth="Infinity" promptText="Seleccionar o escribir host" style="-fx-background-color: #08101c; -fx-text-fill: #ffffff; -fx-prompt-text-fill: #4d6577; -fx-border-color: #1aa7bd; -fx-border-width: 1; -fx-border-radius: 3; -fx-background-radius: 3; -fx-padding: 7 9 7 9; -fx-base: #08101c; -fx-control-inner-background: #08101c;" value="fi.jcaguilar.dev">
+            <items>
+                <FXCollections fx:factory="observableArrayList">
+                    <String fx:value="fi.jcaguilar.dev" />
+                </FXCollections>
+            </items>
+        </ComboBox>
+        <Label style="-fx-text-fill: #6fb7c7; -fx-font-size: 11px;" text="Usuario" />
+        <TextField fx:id="txtUsuario" onAction="#handleUsuarioEnter" promptText="usuario" style="-fx-background-color: #08101c; -fx-text-fill: #ffffff; -fx-prompt-text-fill: #4d6577; -fx-border-color: #1aa7bd; -fx-border-width: 1; -fx-border-radius: 3; -fx-background-radius: 3; -fx-padding: 7 9 7 9;" />
+        <Label style="-fx-text-fill: #6fb7c7; -fx-font-size: 11px;" text="Contraseña" />
+        <PasswordField fx:id="txtPassword" onAction="#handleConectar" promptText="contraseña" style="-fx-background-color: #08101c; -fx-text-fill: #ffffff; -fx-prompt-text-fill: #4d6577; -fx-border-color: #1aa7bd; -fx-border-width: 1; -fx-border-radius: 3; -fx-background-radius: 3; -fx-padding: 7 9 7 9;" />
+        <Button fx:id="btnConectar" maxWidth="Infinity" onAction="#handleConectar" style="-fx-background-color: #0b1320; -fx-border-width: 1.5; -fx-border-radius: 3; -fx-background-radius: 3; -fx-font-weight: bold; -fx-padding: 8 18 8 18; -fx-cursor: hand; -fx-border-color: #ff7a00; -fx-text-fill: #ff9a3c; -fx-effect: dropshadow(gaussian, rgba(255,122,0,0.35), 8, 0.2, 0, 0); -fx-padding: 10 18 10 18;" text="Conectar" />
+        <Label fx:id="lblEstado" style="-fx-text-fill: #ff9a3c; -fx-font-size: 12px;" text="" wrapText="true" />
+    </VBox>
+</HBox>
